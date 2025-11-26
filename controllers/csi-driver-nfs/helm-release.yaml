@@ -13,7 +13,6 @@ spec:
         name: csi-driver-nfs
         namespace: csi-driver-nfs-nfs
       interval: 12h
-  valuesFrom: {}
   values:
     controller:
       replicas: 1
