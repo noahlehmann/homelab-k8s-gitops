@@ -11,7 +11,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: csi-driver-nfs
-        namespace: csi-driver-nfs-nfs
       interval: 12h
   values:
     controller:
