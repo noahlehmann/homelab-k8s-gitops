@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-git-sync
+data:
+  repository: "https://github.com/noahlehmann/home-assistant.git"
+  branch: "main"
+  root: "/config"
