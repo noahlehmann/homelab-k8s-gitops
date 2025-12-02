@@ -5,4 +5,4 @@ metadata:
 data:
   repository: "https://github.com/noahlehmann/home-assistant.git"
   branch: "main"
-  root: "/git-sync"
+  root: "/etc/git-sync"
