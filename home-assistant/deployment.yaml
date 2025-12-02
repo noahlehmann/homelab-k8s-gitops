@@ -37,6 +37,8 @@ spec:
                   key: root
             - name: GITSYNC_DEPTH
               value: "1"
+            - name: GITSYNC_LINK
+              value: "./"
       containers:
         - name: home-assistant-app
           image: "ghcr.io/home-assistant/home-assistant:2025.6.1"
