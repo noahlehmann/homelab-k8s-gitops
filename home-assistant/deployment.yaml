@@ -21,7 +21,7 @@ spec:
             privileged: null
           envFrom:
             - configMapRef:
-                name: home-assistant-config
+                name: home-assistant-env
           ports:
             - name: http
               containerPort: 8123
