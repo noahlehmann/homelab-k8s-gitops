@@ -17,7 +17,7 @@ spec:
         - name: git-sync
           image: registry.k8s.io/git-sync/git-sync:v4.4.0
           volumeMounts:
-            - name: config
+            - name: ha-config-root
               mountPath: /config
           env:
             - name: GITSYNC_REPO
