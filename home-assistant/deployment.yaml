@@ -22,7 +22,7 @@ spec:
             - name: ha-config-root
               mountPath: /config
             - name: git-sync-root
-              mountPath: /git-sync
+              mountPath: /git-sync-root
           env:
             - name: GITSYNC_REPO
               valueFrom:
