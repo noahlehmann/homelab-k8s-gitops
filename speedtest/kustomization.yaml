@@ -12,3 +12,11 @@ labels:
       app.kubernetes.io/name: "speedtest-tracker"
     includeSelectors: true
     includeTemplates: true
+patches:
+  - target:
+      kind: HelmRelease
+      name: postgres-cluster
+    patch: |
+      - op: replace
+        path: /spec/values/cluster/storage/storageClass
+        value: "nfs-retain"

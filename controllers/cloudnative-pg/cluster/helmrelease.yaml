@@ -22,7 +22,7 @@ spec:
       instances: 1
       storage:
         size: 10Gi
-        storageClass: "freenas-nfs-api"
+        storageClass: "nfs-delete"
       primaryUpdateMethod: "switchover"
       primaryUpdateStrategy: "unsupervised"
       logLevel: "info"
