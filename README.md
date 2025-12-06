@@ -33,3 +33,9 @@ kubectl create secret generic sops-age \
     --namespace=flux-system \
     --from-file=age.agekey=/dev/stdin
 ```
+
+Encrypt files with public key like follows:
+
+```bash
+sops --encrypt --in-place --config clusters/homelab/sops/.sops.yaml <path-to-file>
+```
