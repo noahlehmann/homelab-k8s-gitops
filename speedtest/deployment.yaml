@@ -44,10 +44,3 @@ spec:
               value: speedy
             - name: DB_PASSWORD
               value: password
-          volumeMounts:
-            - mountPath: /config
-              name: speedtest-tracker
-      volumes:
-        - name: speedtest-tracker
-          persistentVolumeClaim:
-            claimName: speedtest-tracker
