@@ -22,9 +22,9 @@ spec:
             - |
               rm -rf /config/* \
               && git clone --depth $GITSYNC_DEPTH -b $GITSYNC_REF $GITSYNC_REPO /config
-          volumeMounts:
-            - mountPath: /config
-              name: ha-config-root
+          #volumeMounts:
+          #  - mountPath: /config
+          #    name: ha-config-root
           envFrom:
             - configMapRef:
                 name: config-git-sync
