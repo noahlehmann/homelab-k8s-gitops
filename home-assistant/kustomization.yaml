@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   - configmap.env.yaml
   - configmap.git.yaml
+  - pvc.yaml
   - deployment.yaml
   - service.yaml
 labels:
