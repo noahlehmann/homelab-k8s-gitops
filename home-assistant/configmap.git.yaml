@@ -5,5 +5,4 @@ metadata:
 data:
   GITSYNC_REPO: "https://github.com/noahlehmann/home-assistant.git"
   GITSYNC_REF: "main"
-  GITSYNC_ROOT: "/config"
   GITSYNC_DEPTH: "1"

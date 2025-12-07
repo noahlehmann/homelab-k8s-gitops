@@ -13,16 +13,15 @@ spec:
       volumes:
         - name: ha-config-root
           emptyDir: {}
-        - name: git-sync-root
-          emptyDir: {}
       initContainers:
-        - name: git-sync
-          image: registry.k8s.io/git-sync/git-sync:v4.4.0
-          volumeMounts:
-            - name: ha-config-root
-              mountPath: /config
-            - name: git-sync-root
-              mountPath: /git-sync-root
+        - name: git-clone
+          image: alpine/git
+          command:
+            - /bin/sh
+            - -c
+            - |
+              rm -rf /config/* \
+              && git clone --depth $GITSYNC_DEPTH -b $GITSYNC_REF $GITSYNC_REPO /config
           envFrom:
             - configMapRef:
                 name: config-git-sync
@@ -30,8 +29,6 @@ spec:
         - name: home-assistant-app
           image: "ghcr.io/home-assistant/home-assistant:2025.6.1"
           imagePullPolicy: IfNotPresent
-          securityContext:
-            privileged: null
           envFrom:
             - configMapRef:
                 name: home-assistant-env
