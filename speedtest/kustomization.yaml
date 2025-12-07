@@ -5,8 +5,8 @@ resources:
   - namespace.yaml
   - ../controllers/cloudnative-pg/cluster
   - configmap.env.yaml
-  #- deployment.yaml
-  #- service.yaml
+  - deployment.yaml
+  - service.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: "speedtest-tracker"

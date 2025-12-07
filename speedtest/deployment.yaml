@@ -20,6 +20,9 @@ spec:
       containers:
         - name: speedtest-tracker
           image: lscr.io/linuxserver/speedtest-tracker:latest
+          ports:
+            - containerPort: 80
+              name: http
           envFrom:
             - secretRef:
                 name: speedtest-tracker
@@ -30,17 +33,30 @@ spec:
               value: "1000"
             - name: PGID
               value: "1000"
-            - name: DISPLAY_TIMEZONE
-              value: UTC
             - name: DB_CONNECTION
               value: pgsql
             - name: DB_HOST
-              value: postgres
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: host
             - name: DB_PORT
-              value: "5432"
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: port
             - name: DB_DATABASE
-              value: speedtest_tracker
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: dbname
             - name: DB_USERNAME
-              value: speedy
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: username
             - name: DB_PASSWORD
-              value: password
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: password
