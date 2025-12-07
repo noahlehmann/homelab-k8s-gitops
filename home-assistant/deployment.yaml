@@ -12,26 +12,15 @@ spec:
     spec:
       volumes:
         - name: ha-config-root
-          emptyDir: {}
-      initContainers:
-        - name: git-clone
-          image: alpine/git
-          command:
-            - /bin/sh
-            - -c
-            - |
-              rm -rf /config/* \
-              && git clone --depth $GITSYNC_DEPTH -b $GITSYNC_REF $GITSYNC_REPO /config
-          #volumeMounts:
-          #  - mountPath: /config
-          #    name: ha-config-root
-          envFrom:
-            - configMapRef:
-                name: config-git-sync
+          persistentVolumeClaim:
+            claimName: ha-config
       containers:
         - name: home-assistant-app
           image: "ghcr.io/home-assistant/home-assistant:2025.6.1"
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: ha-config-root
+              mountPath: /config
           envFrom:
             - configMapRef:
                 name: home-assistant-env
@@ -61,7 +50,4 @@ spec:
             failureThreshold: 30
             timeoutSeconds: 1
             periodSeconds: 5
-          volumeMounts:
-            - name: ha-config-root
-              mountPath: /config
       restartPolicy: Always
