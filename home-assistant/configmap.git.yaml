@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: config-git-sync
 data:
-  repository: "https://github.com/noahlehmann/home-assistant.git"
-  branch: "main"
-  root: "/git-sync-root"
+  GITSYNC_REPO: "https://github.com/noahlehmann/home-assistant.git"
+  GITSYNC_REF: "main"
+  GITSYNC_ROOT: "/config"
+  GITSYNC_DEPTH: "1"
