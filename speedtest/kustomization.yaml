@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   - ../controllers/cloudnative-pg/cluster
   - configmap.env.yaml
+  - secret.yaml
   - deployment.yaml
   - service.yaml
 labels:
