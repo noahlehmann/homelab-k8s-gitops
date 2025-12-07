@@ -39,3 +39,9 @@ Encrypt files with public key like follows:
 ```bash
 sops --encrypt --in-place --config clusters/homelab/sops/.sops.yaml <path-to-file>
 ```
+
+Or edit files in place (if key is still available):
+
+```bash
+SOPS_EDITOR=nano SOPS_AGE_KEY_FILE=age.agekey sops <path-to-secret>
+```
