@@ -1,0 +1,279 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: 50x-html
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Service currently not available</title>
+        
+        <style>
+            :root {
+                --color-background-image: url('https://keycloak.ki-awz.iisys.de/resources/uy950/login/ki-awz/img/ki-awz-bg.png');
+                --color-background-primary: #f7f7f7;
+                --color-background-container: #ffffff;
+                --color-text-primary: #333333;
+                --color-accent-primary: #FFD700;
+                --color-accent-link: #007bff;
+                --shadow-elevation: 0 4px 15px rgba(0, 0, 0, 0.1);
+                --transition-speed: 0.3s;
+                --stripe-color: var(--color-accent-primary);
+                --stripe-height: 10px;
+                --corner-radius: 8px;
+            }
+            
+            html.dark-mode {
+                --color-background-image: var(--color-background-image);
+                --color-background-primary: #1c1c1c;
+                --color-background-container: #282828;
+                --color-text-primary: #e0e0e0;
+                --color-accent-primary: #FFEA7A;
+                --color-accent-link: #90caf9;
+                --shadow-elevation: 0 4px 15px rgba(255, 255, 255, 0.1);
+                --stripe-color: var(--color-accent-primary);
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                :root:not([class]) {
+                    --color-background-image: var(--color-background-image);
+                    --color-background-primary: #1c1c1c;
+                    --color-background-container: #282828;
+                    --color-text-primary: #e0e0e0;
+                    --color-accent-primary: #FFEA7A;
+                    --color-accent-link: #90caf9;
+                    --shadow-elevation: 0 4px 15px rgba(255, 255, 255, 0.1);
+                    --stripe-color: var(--color-accent-primary);
+                }
+            }
+            
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 20px;
+                transition: background-color var(--transition-speed), color var(--transition-speed);
+                
+                background-image: var(--color-background-image);
+                background-color: var(--color-background-primary);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+                
+                color: var(--color-text-primary);
+                filter: none;
+            }
+            
+            html.dark-mode body,
+            
+            @media (prefers-color-scheme: dark) {
+                :root:not([class]) body {
+                    filter: invert(100%);
+                }
+            }
+            
+            html.dark-mode .error-container,
+            html.dark-mode .error-logo,
+            html.dark-mode #toggle-controls,
+            html.dark-mode #toggle-controls *,
+            
+            @media (prefers-color-scheme: dark) {
+                :root:not([class]) .error-container,
+                :root:not([class]) .error-logo,
+                :root:not([class]) #toggle-controls,
+                :root:not([class]) #toggle-controls * {
+                    filter: invert(100%);
+                }
+            }
+            
+            .error-container {
+                position: relative;
+                text-align: center;
+                padding: 40px;
+                padding-top: calc(40px + var(--stripe-height));
+                border-radius: 0 0 var(--corner-radius) var(--corner-radius);
+                max-width: 600px;
+                width: 100%;
+                margin: 0 auto;
+                box-sizing: border-box;
+                box-shadow: var(--shadow-elevation);
+                background-color: var(--color-background-container);
+                overflow: hidden;
+            }
+            
+            .error-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: var(--stripe-height);
+                background-color: var(--stripe-color);
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                transition: background-color var(--transition-speed);
+            }
+            
+            .error-logo {
+                max-width: 180px;
+                height: auto;
+                margin-bottom: 25px;
+                opacity: 0.9;
+                transition: opacity var(--transition-speed);
+            }
+            
+            h1 {
+                font-size: 2.5em;
+                margin-bottom: 0.5em;
+                margin-top: 0;
+                color: var(--color-text-primary);
+            }
+            
+            p {
+                font-size: 1.1em;
+                line-height: 1.6;
+                color: var(--color-text-primary);
+            }
+            
+            a {
+                text-decoration: none;
+                font-weight: bold;
+                color: var(--color-accent-link);
+                transition: color var(--transition-speed);
+            }
+            
+            #toggle-controls {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                display: flex;
+                gap: 10px;
+                z-index: 100;
+            }
+            
+            .toggle-button {
+                background-color: var(--color-background-container);
+                color: var(--color-text-primary);
+                border: 1px solid var(--color-text-primary);
+                padding: 10px 15px;
+                border-radius: 50px;
+                cursor: pointer;
+                transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+    
+    <body>
+    <div id="toggle-controls">
+        <button id="language-toggle" class="toggle-button">🌐 Language
+        </button>
+        <button id="theme-toggle" class="toggle-button">🌓 Theme</button>
+    </div>
+    
+    <div class="error-container" id="error-content">
+        <p>Lade Inhalte / Loading content...</p>
+    </div>
+    
+    <script>
+        const THEME_KEY = 'user-color-scheme';
+        const LANG_KEY = 'user-language';
+        const htmlElement = document.documentElement;
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const languageToggleButton = document.getElementById('language-toggle');
+        
+        function getCurrentTheme() {
+            return htmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
+        }
+        
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark-mode');
+                themeToggleButton.textContent = '☀️ Light';
+            } else {
+                htmlElement.classList.remove('dark-mode');
+                themeToggleButton.textContent = '🌙 Dark';
+            }
+            localStorage.setItem(THEME_KEY, theme);
+        }
+        
+        function initializeTheme() {
+            const storedTheme = localStorage.getItem(THEME_KEY);
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (storedTheme) {
+                applyTheme(storedTheme);
+            } else if (prefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light');
+            }
+        }
+        
+        function getTranslatedContent(langCode) {
+            const logoHtml = '<img src="https://keycloak.ki-awz.iisys.de/resources/uy950/login/ki-awz/img/ki-awz-logo.png" alt="KI AWZ Logo" class="error-logo">';
+            let headline = '';
+            let message = '';
+            
+            if (langCode === 'de') {
+                headline = 'Unser Service ist momentan leider nicht erreichbar.';
+                message = 'Unsere Techniker arbeiten mit Hochdruck an einer Lösung.';
+                languageToggleButton.textContent = '🌐 ENG'
+            } else {
+                headline = 'We are experiencing technical difficulties.';
+                message = 'Our team is actively working to resolve this.';
+                languageToggleButton.textContent = '🌐 GER'
+            }
+            
+            return `
+      ${logoHtml}
+      <h1>${headline}</h1>
+      <p>${message}</p>
+      `;
+        }
+        
+        function applyLanguage(langCode) {
+            const contentElement = document.getElementById('error-content');
+            contentElement.innerHTML = getTranslatedContent(langCode);
+            document.documentElement.lang = langCode;
+            localStorage.setItem(LANG_KEY, langCode);
+        }
+        
+        function initializeLanguage() {
+            const storedLang = localStorage.getItem(LANG_KEY);
+            const browserLang = (navigator.languages || [navigator.language])[0].split('-')[0].toLowerCase();
+            
+            const initialLang = storedLang || (browserLang === 'de' ? 'de' : 'en');
+            
+            applyLanguage(initialLang);
+        }
+        
+        themeToggleButton.addEventListener('click', () => {
+            const currentTheme = getCurrentTheme();
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
+        
+        languageToggleButton.addEventListener('click', () => {
+            const currentLang = document.documentElement.lang;
+            const newLang = currentLang === 'de' ? 'en' : 'de';
+            applyLanguage(newLang);
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTheme();
+            initializeLanguage();
+        });
+    </script>
+    </body>
+    
+    </html>
