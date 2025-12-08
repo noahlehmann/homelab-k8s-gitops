@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: godaddy-webhook
+spec:
+  releaseName: godaddy-webhook
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/godaddy-webhook   # <- path inside repo
+      sourceRef:
+        kind: GitRepository
+        name: godaddy-webhook
+  values:
+    groupName: golocal.dev
