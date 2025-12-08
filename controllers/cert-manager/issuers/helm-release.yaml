@@ -7,7 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: charts/godaddy-webhook   # <- path inside repo
+      chart: deploy/charts/godaddy-webhook
       sourceRef:
         kind: GitRepository
         name: godaddy-webhook
