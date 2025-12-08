@@ -2,11 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: speedtest
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-godaddy
 spec:
   ingressClassName: dmz-ingress
   tls:
     - hosts:
         - speedtest.golocal.dev
+      secretName: speedtest-tls
   rules:
     - host: speedtest.golocal.dev
       http:
