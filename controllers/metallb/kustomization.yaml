@@ -6,7 +6,7 @@ resources:
   - namespace.yaml
   - helm-repository.yaml
   - helm-release.yaml
-  #- crdapplies.yaml
+  - crdapplies.yaml
 patches:
   - patch: |-
       - op: replace
