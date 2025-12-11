@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: speedtest
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-godaddy
+    cert-manager.io/cluster-issuer: letsencrypt-cloudflare
 spec:
   ingressClassName: dmz-ingress
   tls:
