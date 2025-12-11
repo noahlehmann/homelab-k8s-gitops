@@ -1,25 +1,20 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-    name: letsencrypt-godaddy
+    name: letsencrypt-cloudflare
 spec:
     acme:
         email: ENC[AES256_GCM,data:71wJquEM10FPzAJCBufjoapZXjBH92mXtMSp,iv:5JXf/EanW2aH+PuaMbism+rPyL9A7sJ1kc4gfdtISXU=,tag:OLnK5LjUzq3NTzfTyqmNjg==,type:str]
         server: https://acme-v02.api.letsencrypt.org/directory
         privateKeySecretRef:
-            name: letsencrypt-godaddy-key
+            name: letsencrypt-cloudflare-key
         solvers:
-            - dns01:
-                webhook:
-                    groupName: acme.golocal.dev
-                    solverName: godaddy
-                    config:
-                        apiKeySecretRef:
-                            name: godaddy-dns
-                            key: api-key
-                        apiSecretSecretRef:
-                            name: godaddy-dns
-                            key: api-secret
+          - dns01:
+              cloudflare:
+                apiTokenSecretRef:
+                  name: cloudflare-api-token
+                  key: api-token
+
 sops:
     age:
         - recipient: age1cl4m8gptnm0vm4g53x05fnn2r82u8hvdatkx07uheky4z7q7ef7sukrmwl

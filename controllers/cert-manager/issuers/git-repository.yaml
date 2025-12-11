@@ -1,9 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
-metadata:
-  name: godaddy-webhook
-spec:
-  interval: 1h
-  url: https://github.com/snowdrop/godaddy-webhook
-  ref:
-    tag: "v0.6.0"
