@@ -26,6 +26,7 @@ data:
     kubelet:
       enabled: true
       serviceMonitor:
+        cAdvisor: true
         metricRelabelings:
           - action: keep
             sourceLabels: [__name__]
@@ -49,4 +50,4 @@ data:
         limits:
           cpu: 200m
           memory: 256Mi
-    
+          
