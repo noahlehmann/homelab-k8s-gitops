@@ -30,6 +30,7 @@ data:
         cAdvisor: true
         https: true
         insecureSkipVerify: true
+        selector: {}
     metricRelabelings: []
     kubeStateMetrics:
       enabled: true
