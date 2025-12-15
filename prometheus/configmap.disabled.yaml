@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: disabled-chart-values
+data:
+  values.yaml: |-
+    grafana:
+      enabled: false
+    nodeExporter:
+      enabled: false
+    kubeApiServer:
+      enabled: false
+      kubelet:
+        enabled: false
+      kubeControllerManager:
+        enabled: false
+      coreDns:
+        enabled: false
+      kubeDns:
+        enabled: false
+      kubeEtcd:
+        enabled: false
+      kubeScheduler:
+        enabled: false
+      kubeProxy:
+        enabled: false
+      kubeStateMetrics:
+        enabled: false
+      defaultRules:
+        create: false

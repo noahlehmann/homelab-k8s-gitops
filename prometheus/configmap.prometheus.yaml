@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-chart-values
+data:
+  values.yaml: |-
+    prometheus:
+      enabled: true
+      thanosService:
+        enabled: false
+      thanosServiceMonitor:
+        enabled: false
+      thanosServiceExternal:
+        enabled: false
+      ## Configuration for Prometheus service
+      ##
+      service:
+        port: 9090
+        targetPort: 9090
+        type: ClusterIP
+      ingress:
+        enabled: true
+        ingressClassName: dmz-ingress
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-cloudflare
+        hosts:
+          - "prometheus.golocal.dev"
+        tls:
+          - hosts:
+              - "prometheus.golocal.dev"
+            secretName: prometheus-tls
+      serviceMonitor:
+        interval: "5s"
+      prometheusSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 250m
+            memory: 512Mi  
+        externalUrl: "https://prometheus.golocal.dev"
+        retention: "2d"
+        retentionSize: "150GB"
+        maximumStartupDurationSeconds: 1200
+        #Change default scrape interval to 5s (default 30s)
+        scrapeInterval: "30s"
+        disableCompaction: false
+        enableAdminAPI: true
+        ## If true, a nil or {} value for prometheus.prometheusSpec.serviceMonitorSelector will cause the
+        ## prometheus resource to be created with selectors based on values in the helm deployment,
+        ## which will also match the servicemonitors created
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        walCompression: true
+        replicas: 1
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: nfs-delete
+              accessModes: [ "ReadWriteOnce" ]
+              resources:
+                requests:
+                  storage: "20Gi"
+        relabel_configs:
+          - source_labels: [ __meta_kubernetes_pod_node_name ]
+            action: replace
+            target_label: kubernetes_node

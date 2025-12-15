@@ -1,0 +1,25 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prom
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: "77.6.2"
+      sourceRef:
+        kind: HelmRepository
+        name: kube-prometheus-stack
+        namespace: prometheus
+      interval: 12h
+  valuesFrom:
+    - kind: ConfigMap
+      name: common-chart-values
+    - kind: ConfigMap
+      name: disabled-chart-values
+    - kind: ConfigMap
+      name: prometheus-chart-values
+    - kind: ConfigMap
+      name: alertmanager-chart-values

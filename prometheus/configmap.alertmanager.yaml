@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-chart-values
+data:
+  values.yaml: |-
+    alertmanager:
+      alertmanagerSpec:
+        resources:
+          requests:
+            cpu: 25m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi     
+      enabled: true
+      service:
+        type: ClusterIP
+      ingress:
+        enabled: true
+        ingressClassName: dmz-ingress
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-cloudflare
+        hosts:
+          - "alertmanager.golocal.dev"
+        tls:
+          - hosts:
+              - "alertmanager.golocal.dev"
+            secretName: alertmanager-tls 
+      config:
+        global:
+          resolve_timeout: 5m
+        route:
+          receiver: "blackhole"
+          routes: []
+        receivers:
+          - name: "blackhole"
