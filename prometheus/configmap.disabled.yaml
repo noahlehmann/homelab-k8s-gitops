@@ -6,11 +6,7 @@ data:
   values.yaml: |-
     grafana:
       enabled: false
-    nodeExporter:
-      enabled: false
     kubeApiServer:
-      enabled: false
-    kubelet:
       enabled: false
     kubeControllerManager:
       enabled: false

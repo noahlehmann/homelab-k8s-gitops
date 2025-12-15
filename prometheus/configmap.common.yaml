@@ -14,6 +14,22 @@ data:
       rbac:
         create: true
         pspEnabled: false
+    nodeExporter:
+      enabled: true
+      resources:
+        requests:
+          cpu: 25m
+          memory: 32Mi
+        limits:
+          cpu: 100m
+          memory: 128Mi
+    kubelet:
+      enabled: true
+      serviceMonitor:
+        metricRelabelings:
+          - action: keep
+            sourceLabels: [__name__]
+            regex: "kubelet_(node_name|runtime_operations_total|volume_stats_.*)"
     prometheusOperator:
       enabled: true
       tls:
@@ -33,3 +49,4 @@ data:
         limits:
           cpu: 200m
           memory: 256Mi
+    
