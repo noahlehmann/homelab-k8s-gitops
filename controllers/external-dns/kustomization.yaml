@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: external-dns
+resources:
+  - namespace.yaml
+  - secret.yaml
+  - service-account.yaml
+  - cluster-role.yaml
+  - cluster-role-binding.yaml
+  - deployment.yaml
+labels:
+  - pairs:
+      app: external-dns
+    includeTemplates: true
+    includeSelectors: true
