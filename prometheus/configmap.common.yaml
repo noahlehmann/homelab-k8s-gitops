@@ -30,7 +30,7 @@ data:
         metricRelabelings:
           - action: keep
             sourceLabels: [__name__]
-            regex: "kubelet_(node_name|runtime_operations_total|volume_stats_.*)"
+            regex: "container_cpu_usage_seconds_total|container_memory_working_set_bytes"
     prometheusOperator:
       enabled: true
       tls:
