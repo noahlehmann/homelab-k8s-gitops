@@ -26,11 +26,11 @@ data:
     kubelet:
       enabled: true
       serviceMonitor:
+        enabled: true
         cAdvisor: true
-        metricRelabelings:
-          - action: keep
-            sourceLabels: [__name__]
-            regex: "container_cpu_usage_seconds_total|container_memory_working_set_bytes"
+        https: true
+        insecureSkipVerify: true
+    metricRelabelings: []
     kubeStateMetrics:
       enabled: true
       resources:
