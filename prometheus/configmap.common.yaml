@@ -27,10 +27,10 @@ data:
       enabled: true
       serviceMonitor:
         enabled: true
-        cAdvisor: true
-        https: true
-        insecureSkipVerify: true
-        selector: {}
+        https: false
+        path: /metrics
+        selector:
+          job: kubelet
     metricRelabelings: []
     kubeStateMetrics:
       enabled: true
