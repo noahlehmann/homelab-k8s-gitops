@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: wg-easy-wg
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 10.0.0.56
+    metallb.universe.tf/address-pool: "dmz-pool"
+    metallb.universe.tf/loadBalancerIPs: "10.0.0.56"
 spec:
   type: LoadBalancer
   ports:
