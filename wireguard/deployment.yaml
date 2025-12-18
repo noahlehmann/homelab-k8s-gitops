@@ -17,14 +17,14 @@ spec:
             - name: WG_HOST
               value: wireguard.golocal.dev
             - name: WG_PORT
-              value: "30000"
+              value: "51976"
           envFrom:
             - secretRef:
                 name: wg-easy-password
           image: ghcr.io/wg-easy/wg-easy
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 51820
+            - containerPort: 51976
               name: wg
               protocol: UDP
             - containerPort: 51821
