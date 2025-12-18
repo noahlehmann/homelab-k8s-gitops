@@ -16,9 +16,12 @@ spec:
       containers:
         - name: ddns
           image: ghcr.io/qdm12/ddns-updater:v2.8.0
-          envFrom:
-            - secretRef:
-                name: ddns-updater-config
+          env:
+            - name: CONFIG
+              valueFrom:
+                secretKeyRef:
+                  name: ddns-updater-config
+                  key: config.json
           ports:
             - containerPort: 8000
               name: http
