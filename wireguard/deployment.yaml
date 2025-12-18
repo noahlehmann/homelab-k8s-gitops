@@ -18,6 +18,10 @@ spec:
               value: wg.golocal.dev
             - name: WG_PORT
               value: "51976"
+            - name: WG_DEFAULT_ADDRESS
+              value: "10.8.0.x"
+            - name: WG_DEFAULT_DNS
+              value: "10.0.0.1"
           envFrom:
             - secretRef:
                 name: wg-easy-password
