@@ -11,11 +11,12 @@ spec:
     type: Recreate
   template:
     spec:
+      hostNetwork: true
       containers:
         - name: wg-easy
           env:
             - name: WG_HOST
-              value: wireguard.golocal.dev
+              value: wg.golocal.dev
             - name: WG_PORT
               value: "51976"
           envFrom:
