@@ -5,3 +5,11 @@ See docs here: [https://github.com/wg-easy/wg-easy/wiki/Using-WireGuard-Easy-wit
 ```bash
 flux reconcile --kubeconfig ../kubeconfig kustomization --with-source wireguard -n flux-system
 ```
+
+## App Password
+
+See: [https://github.com/wg-easy/wg-easy/blob/v14/How_to_generate_an_bcrypt_hash.md](https://github.com/wg-easy/wg-easy/blob/v14/How_to_generate_an_bcrypt_hash.md)
+
+```bash
+
+```
