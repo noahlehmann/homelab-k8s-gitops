@@ -18,6 +18,9 @@ spec:
               value: wireguard.golocal.dev
             - name: WG_PORT
               value: "30000"
+          envFrom:
+            - secretRef:
+                name: wg-easy-password
           image: ghcr.io/wg-easy/wg-easy
           imagePullPolicy: IfNotPresent
           ports:
