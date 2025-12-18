@@ -2,8 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: wg-easy-wg
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 10.0.0.56
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: wg
       port: 30000
