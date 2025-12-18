@@ -4,6 +4,7 @@ namespace: wireguard
 resources:
   - namespace.yaml
   - pvc.yaml
+  - secret.pw.yaml
   - deployment.yaml
   - service.udp.yaml
   - service.ui.yaml
