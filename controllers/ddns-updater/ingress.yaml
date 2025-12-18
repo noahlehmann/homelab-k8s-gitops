@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cloudflare
+  name: ddns-updater
+spec:
+  rules:
+    - host: ddns-updater.golocal.dev
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: ddns-updater
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - ddns-updater.golocal.dev
+      secretName: ddns-updater-tls
