@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-index
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>It works</title>
+    </head>
+    <body>
+    <h1>NGINX is running</h1>
+    <p>Static page served from ConfigMap.</p>
+    </body>
+    </html>

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-nginx
+  template:
+    metadata:
+      labels:
+        app: simple-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:stable-alpine
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: index
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: index
+          configMap:
+            name: nginx-index
