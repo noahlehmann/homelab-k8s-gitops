@@ -4,7 +4,7 @@ metadata:
   name: test
   annotations:
     metallb.universe.tf/address-pool: "dmz-pool"
-    metallb.universe.tf/loadBalancerIPs: "10.0.0.57"
+    metallb.universe.tf/loadBalancerIPs: "10.0.0.58"
 spec:
   type: LoadBalancer
   ports:
