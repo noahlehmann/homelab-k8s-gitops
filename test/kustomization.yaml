@@ -3,9 +3,9 @@ kind: Kustomization
 namespace: test
 resources:
   - namespace.yaml
-  - configmap.html.yaml
-  - deployment.yaml
-  - service.yaml
+  #- configmap.html.yaml
+  #- deployment.yaml
+  #- service.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: "test"
