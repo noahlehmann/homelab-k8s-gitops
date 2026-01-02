@@ -33,9 +33,10 @@ spec:
       extraArgs:
         default-ssl-certificate: "$(POD_NAMESPACE)/default-cert"
       service:
+        ipFamilyPolicy: PreferDualStack
         annotations:
-          metallb.universe.tf/address-pool: "dmz-pool"
-          metallb.universe.tf/loadBalancerIPs: "10.0.0.55"
+          metallb.universe.tf/address-pool: "dmz-pool,dmz-pool-v6"
+          metallb.universe.tf/loadBalancerIPs: "10.0.0.55,2a02:810d:bd90:bd00::100"
     defaultBackend:
       enabled: true
       image:
