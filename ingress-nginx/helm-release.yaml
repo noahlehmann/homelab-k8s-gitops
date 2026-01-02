@@ -36,7 +36,7 @@ spec:
         ipFamilyPolicy: PreferDualStack
         annotations:
           metallb.universe.tf/address-pool: "dmz-pool,dmz-pool-v6"
-          metallb.universe.tf/loadBalancerIPs: "10.0.0.55,2a02:810d:bd90:bd00::100"
+          metallb.universe.tf/loadBalancerIPs: "10.0.0.55"
     defaultBackend:
       enabled: true
       image:
