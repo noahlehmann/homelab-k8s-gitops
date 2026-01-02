@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: speedtest
 resources:
   - namespace.yaml
-  - ../controllers/cloudnative-pg/cluster
+  - ../cloudnative-pg/cluster
   - configmap.env.yaml
   - secret.yaml
   - deployment.yaml
