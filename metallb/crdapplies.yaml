@@ -9,6 +9,15 @@ spec:
   autoAssign: false
 ---
 apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: dmz-pool-v6
+spec:
+  addresses:
+    - "2a02:810d:bd90:bd00::100/128"
+  autoAssign: false
+---
+apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
   name: dmz-advertisement
@@ -17,3 +26,4 @@ spec:
     - eth0
   ipAddressPools:
     - dmz-pool
+    - dmz-pool-v6
