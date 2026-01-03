@@ -25,6 +25,15 @@ spec:
               containerPort: 8095
             - name: devices
               containerPort: 8097
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - k3s-1
       volumes:
         - name: data
           persistentVolumeClaim:
