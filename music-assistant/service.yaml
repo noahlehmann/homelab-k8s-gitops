@@ -2,15 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: music-assistant
-  annotations:
-    metallb.universe.tf/address-pool: "dmz-pool"
-    metallb.universe.tf/loadBalancerIPs: "10.0.0.56"
 spec:
   type: LoadBalancer
   ports:
     - name: web
       port: 8095
       targetPort: web
-    - name: devices
-      port: 8097
-      targetPort: devices
