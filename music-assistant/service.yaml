@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: music-assistant
+spec:
+  type: ClusterIP
+  ports:
+    - name: web
+      port: 80
+      targetPort: web
+    - name: devices
+      port: 8097
+      targetPort: devices

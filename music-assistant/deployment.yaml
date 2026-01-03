@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: music-assistant
+spec:
+  replicas: 1
+  selector: {}
+  template:
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: music-assistant
+          image: ghcr.io/music-assistant/server:latest
+          env:
+            - name: LOG_LEVEL
+              value: "info"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+          ports:
+            - name: web
+              containerPort: 8095
+            - name: devices
+              containerPort: 8097
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: music-assistant-data
