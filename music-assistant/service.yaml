@@ -7,7 +7,9 @@ spec:
   ports:
     - name: web
       port: 8095
+      nodePort: 8095
       targetPort: web
     - name: devices
       port: 8097
+      nodePort: 8097
       targetPort: devices
