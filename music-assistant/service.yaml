@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: music-assistant
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - name: web
-      port: 80
+      port: 8095
       targetPort: web
     - name: devices
       port: 8097
