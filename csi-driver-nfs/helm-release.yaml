@@ -35,3 +35,11 @@ spec:
         volumeBindingMode: Immediate
         mountOptions:
           - nfsvers=4.1
+      - name: nfs-named
+        parameters:
+          server: "10.0.0.21"
+          share: /mnt/data/csi/named
+        reclaimPolicy: Retain
+        volumeBindingMode: Immediate
+        mountOptions:
+          - nfsvers=4.1
