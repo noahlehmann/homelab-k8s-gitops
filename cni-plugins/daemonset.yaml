@@ -29,13 +29,13 @@ spec:
               wget -qO /tmp/cni.tgz \
               https://github.com/containernetworking/plugins/releases/download/v1.9.0/cni-plugins-linux-${ARCH}-v1.9.0.tgz
               
-              tar -xzf /tmp/cni.tgz -C /host/opt/cni/bin
+              tar -xzf /tmp/cni.tgz -C /host/var/lib/rancher/k3s/data/cni
               echo "CNI plugins installed/updated"
               
               sleep infinity
           volumeMounts:
             - name: cni-bin
-              mountPath: /host/opt/cni/bin
+              mountPath: /host/var/lib/rancher/k3s/data/cni
       volumes:
         - name: cni-bin
           hostPath:
