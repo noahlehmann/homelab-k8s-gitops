@@ -32,16 +32,16 @@ spec:
           terminationMessagePolicy: FallbackToLogsOnError
           volumeMounts:
             - name: cni
-              mountPath: /host/var/lib/rancher/k3s/agent/etc/cni/net.d
+              mountPath: /host/etc/cni/net.d
             # multus-daemon expects that cnibin path must be identical between pod and container host.
             # e.g. if the cni bin is in '/opt/cni/bin' on the container host side, then it should be mount to '/opt/cni/bin' in multus-daemon,
             # not to any other directory, like '/opt/bin' or '/usr/bin'.
             - name: cnibin
-              mountPath: /var/lib/rancher/k3s/data/cni
+              mountPath: /var/lib/rancher/k3s/data/current/bin
             - name: host-run
               mountPath: /host/run
             - name: host-var-lib-cni-multus
-              mountPath: /var/lib/rancher/k3s/data/cni/multus
+              mountPath: /var/lib/cni/multus
             - name: host-var-lib-kubelet
               mountPath: /var/lib/kubelet
               mountPropagation: HostToContainer
@@ -69,7 +69,7 @@ spec:
           command:
             - "/usr/src/multus-cni/bin/install_multus"
             - "-d"
-            - "/host/var/lib/rancher/k3s/data/cni"
+            - "/var/lib/rancher/k3s/data/current/bin"
             - "-t"
             - "thick"
           resources:
@@ -90,7 +90,7 @@ spec:
             path: /var/lib/rancher/k3s/agent/etc/cni/net.d
         - name: cnibin
           hostPath:
-            path: /var/lib/rancher/k3s/data/cni
+            path: /var/lib/rancher/k3s/data/current/bin
         - name: hostroot
           hostPath:
             path: /
@@ -105,7 +105,7 @@ spec:
             path: /run
         - name: host-var-lib-cni-multus
           hostPath:
-            path: /var/lib/rancher/k3s/data/cni/multus
+            path: /var/lib/cni/multus
         - name: host-var-lib-kubelet
           hostPath:
             path: /var/lib/kubelet
