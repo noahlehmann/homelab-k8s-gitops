@@ -3,15 +3,16 @@ kind: Deployment
 metadata:
   name: music-assistant
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   selector: {}
   template:
     metadata:
       annotations:
-        k8s.io.cni.cncf.io/networks: |
+        k8s.v1.cni.cncf.io/networks: |
           [{
             "name": "mass-static-net",
-            "namespace": "music-assistant",
             "mac": "02:10:00:fa:01:01",
             "ips": ["10.0.0.61/24"]
           }]
