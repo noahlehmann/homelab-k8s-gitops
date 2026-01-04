@@ -4,6 +4,7 @@ namespace: music-assistant
 resources:
   - namespace.yaml
   #- configmap.env.yaml
+  - cr.multus.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
