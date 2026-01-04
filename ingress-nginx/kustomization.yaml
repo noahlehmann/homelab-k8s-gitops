@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: ingress-dmz
 resources:
   - namespace.yaml
+  - certificate.yaml
   - configmap.404.yaml
   - configmap.50x.yaml
   - helm-repository.yaml
