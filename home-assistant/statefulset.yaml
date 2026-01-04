@@ -4,7 +4,7 @@ metadata:
   name: home-assistant
 spec:
   serviceName: home-assistant
-  replicas: 0
+  replicas: 1
   updateStrategy:
     type: OnDelete
   selector: {}
