@@ -16,8 +16,6 @@ spec:
             "ips": ["10.0.0.61/24"]
           }]
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: music-assistant
           image: ghcr.io/music-assistant/server:latest

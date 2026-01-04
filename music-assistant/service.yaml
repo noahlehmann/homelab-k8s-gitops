@@ -8,6 +8,3 @@ spec:
     - name: web
       port: 8095
       targetPort: web
-    - name: devices
-      port: 8097
-      targetPort: devices
