@@ -10,4 +10,4 @@ spec:
   commonName: golocal.dev
   dnsNames:
     - golocal.dev
-    - info.example.com
+    - info.golocal.dev
