@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: multus
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: rke2-multus
+      version: "4.2.305"
+      sourceRef:
+        kind: HelmRepository
+        name: multus-rke
+      interval: 12h
+  values:
+    config:
+      fullnameOverride: multus
+      cni_conf:
+        confDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
+        binDir: /var/lib/rancher/k3s/data/cni/
+        kubeconfig: /var/lib/rancher/k3s/agent/etc/cni/net.d/multus.d/multus.kubeconfig
+        # Comment the following line when using rke2-multus < v4.2.202
+        multusAutoconfigDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
