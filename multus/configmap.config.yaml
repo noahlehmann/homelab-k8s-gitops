@@ -14,6 +14,7 @@ data:
       "logToStderr": true,
       "cniConfigDir": "/host/var/lib/rancher/k3s/agent/etc/cni/net.d",
       "multusAutoconfigDir": "/host/var/lib/rancher/k3s/agent/etc/cni/net.d",
-      "multusConfigFile": "00-multus.conf",
+      "multusConfigFile": "auto",
+      "multusCNIConfName": "00-multus.conf",
       "socketDir": "/host/run/multus/"
     }
