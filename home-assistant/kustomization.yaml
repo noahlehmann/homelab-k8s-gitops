@@ -3,11 +3,13 @@ kind: Kustomization
 namespace: home-assistant
 resources:
   - namespace.yaml
+  - cr.multus.yaml
   - configmap.env.yaml
   - configmap.git.yaml
+  - pv.yaml
   - pvc.yaml
-  - deployment.yaml
   - service.yaml
+  - statefulset.yaml
   - ingress.yaml
 labels:
   - pairs:

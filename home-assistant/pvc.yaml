@@ -3,9 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: ha-config
 spec:
-  storageClassName: nfs-retain
+  storageClassName: nfs-named
+  volumeName: home-assistant-config
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 5Gi
+      storage: 10Gi
