@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: matter-server
+spec:
+  serviceName: matter-server
+  replicas: 1
+  selector: {}
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [{
+            "name": "matter-static-net",
+            "mac": "02:10:00:fa:01:03",
+            "ips": ["10.0.0.63/24"]
+          }]
+    spec:
+      dnsPolicy: ClusterFirstWithHostNet
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: matter-server
+      containers:
+        - name: matter-server
+          image: ghcr.io/home-assistant-libs/python-matter-server:stable
+          ports:
+            - containerPort: 5580
+              name: matter
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          env:
+            - name: STORAGE_PATH
+              value: /data
