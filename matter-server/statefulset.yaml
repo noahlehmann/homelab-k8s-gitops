@@ -13,7 +13,11 @@ spec:
           [{
             "name": "matter-static-net",
             "mac": "02:10:00:fa:01:03",
-            "ips": ["10.0.0.63/24"]
+            "ips": [
+              "10.0.0.63/24",
+              "2a02:810d:bd90:bd00::63/64",
+              "fd00:10::63/64"
+            ]
           }]
     spec:
       dnsPolicy: ClusterFirstWithHostNet
