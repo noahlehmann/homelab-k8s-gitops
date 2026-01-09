@@ -15,7 +15,11 @@ spec:
           [{
             "name": "hass-static-net",
             "mac": "02:10:00:fa:01:02",
-            "ips": ["10.0.0.62/24"]
+            "ips": [
+              "10.0.0.62/24",
+              "2a02:810d:bd90:bd00::62/64",
+              "fd00:10::62/64"
+            ]
           }]
     spec:
       terminationGracePeriodSeconds: 60
