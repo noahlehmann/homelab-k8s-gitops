@@ -28,6 +28,16 @@ spec:
       containers:
         - name: matter-server
           image: ghcr.io/home-assistant-libs/python-matter-server:stable
+          args:
+            - --storage-path=/data
+            - --paa-root-cert-dir=/data/credentials
+            - --bluetooth-adapter=0
+          #securityContext:
+          #  # Needed for Bluetooth via dbus
+          #  allowPrivilegeEscalation: true
+          #  capabilities:
+          #    add:
+          #      - SYS_ADMIN
           ports:
             - containerPort: 5580
               name: matter
