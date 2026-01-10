@@ -32,6 +32,7 @@ spec:
             - --storage-path=/data
             - --paa-root-cert-dir=/data/credentials
             - --bluetooth-adapter=0
+            - --primary-interface=net1
           #securityContext:
           #  # Needed for Bluetooth via dbus
           #  allowPrivilegeEscalation: true
