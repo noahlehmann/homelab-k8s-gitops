@@ -25,17 +25,13 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: matter-server
-        - name: dbus
-          hostPath:
-            path: /var/run/dbus/system_bus_socket
-            type: Socket
       containers:
         - name: matter-server
           image: ghcr.io/home-assistant-libs/python-matter-server:stable
           args:
             - --storage-path=/data
             - --paa-root-cert-dir=/data/credentials
-            - --bluetooth-adapter=1
+            - --bluetooth-adapter=-1
             - --primary-interface=net1
           securityContext:
             allowPrivilegeEscalation: true
@@ -48,8 +44,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
-            - name: dbus
-              mountPath: /var/run/dbus/system_bus_socket
           env:
             - name: STORAGE_PATH
               value: /data
