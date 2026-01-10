@@ -39,7 +39,7 @@ spec:
             - --storage-path=/data
             - --paa-root-cert-dir=/data/credentials
             - --bluetooth-adapter=0
-            - --primary-interface=net1
+            #- --primary-interface=net1
           securityContext:
             privileged: true
           ports:
