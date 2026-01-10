@@ -35,7 +35,7 @@ spec:
           args:
             - --storage-path=/data
             - --paa-root-cert-dir=/data/credentials
-            - --bluetooth-adapter=0
+            - --bluetooth-adapter=1
             - --primary-interface=net1
           securityContext:
             allowPrivilegeEscalation: true
