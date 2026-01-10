@@ -23,9 +23,6 @@ spec:
           }]
     spec:
       terminationGracePeriodSeconds: 60
-      nodeSelector:
-        # needed, BT usb
-        kubernetes.io/hostname: k3s-1
       volumes:
         - name: ha-config
           persistentVolumeClaim:
@@ -33,10 +30,6 @@ spec:
         - name: localtime
           hostPath:
             path: /etc/localtime
-        - name: dbus
-          hostPath:
-            path: /var/run/dbus/system_bus_socket
-            type: Socket
       containers:
         - name: home-assistant
           image: ghcr.io/home-assistant/home-assistant:stable
@@ -47,12 +40,6 @@ spec:
             - name: localtime
               mountPath: /etc/localtime
               readOnly: true
-            - name: dbus
-              mountPath: /var/run/dbus/system_bus_socket
           ports:
             - containerPort: 8123
               name: http
-          securityContext:
-            privileged: true
-
-
