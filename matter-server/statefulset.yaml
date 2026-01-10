@@ -7,21 +7,20 @@ spec:
   replicas: 1
   selector: {}
   template:
-    #metadata:
-    #  annotations:
-    #    k8s.v1.cni.cncf.io/networks: |
-    #      [{
-    #        "name": "matter-static-net",
-    #        "mac": "02:10:00:fa:01:03",
-    #        "ips": [
-    #          "10.0.0.63/24",
-    #          "2a02:810d:bd90:bd00::63/64",
-    #          "fd00:10::63/64"
-    #        ]
-    #      }]
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [{
+            "name": "matter-static-net",
+            "mac": "02:10:00:fa:01:03",
+            "ips": [
+              "10.0.0.63/24",
+              "2a02:810d:bd90:bd00::63/64",
+              "fd00:10::63/64"
+            ]
+          }]
     spec:
       dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
       nodeSelector:
         kubernetes.io/hostname: k3s-1 # needed, BT usb
       volumes:
@@ -39,7 +38,7 @@ spec:
             - --storage-path=/data
             - --paa-root-cert-dir=/data/credentials
             - --bluetooth-adapter=0
-            #- --primary-interface=net1
+            - --primary-interface=net1
           securityContext:
             privileged: true
           ports:
