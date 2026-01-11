@@ -43,3 +43,11 @@ spec:
         volumeBindingMode: Immediate
         mountOptions:
           - nfsvers=4.1
+      - name: nfs-media
+        parameters:
+          server: "10.0.0.21"
+          share: /mnt/data/media
+        reclaimPolicy: Retain
+        volumeBindingMode: Immediate
+        mountOptions:
+          - nfsvers=4.1

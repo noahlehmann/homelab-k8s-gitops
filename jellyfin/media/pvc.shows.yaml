@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shows
+spec:
+  storageClassName: nfs-named
+  volumeName: shows
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 2Ti

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+spec:
+  selector: {}
+  template:
+    spec:
+      containers:
+        - image: docker.io/jellyfin/jellyfin
+          name: jellyfin
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: JELLYFIN_PublishedServerUrl
+              value: "https://jellyfin.golocal.dev"
+          ports:
+            - containerPort: 8096
+              protocol: TCP
+            - containerPort: 7359
+              protocol: UDP
+          volumeMounts:
+            - name: media
+              mountPath: /data/media
+              readOnly: True
+            - name: config
+              mountPath: /config
+            - name: cache
+              mountPath: /cache
+      restartPolicy: Always
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: jellyfin-media
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
+        - name: cache
+          emptyDir: {}
