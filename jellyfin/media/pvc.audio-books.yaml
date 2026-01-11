@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: audio-books
 spec:
-  storageClassName: nfs-named
+  storageClassName: nfs-media
   volumeName: audio-books
   accessModes:
     - ReadOnlyMany

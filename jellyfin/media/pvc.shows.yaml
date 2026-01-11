@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: shows
 spec:
-  storageClassName: nfs-named
+  storageClassName: nfs-media
   volumeName: shows
   accessModes:
     - ReadOnlyMany

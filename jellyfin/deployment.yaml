@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-        - image: docker.io/jellyfin/jellyfin
+        - image: docker.io/jellyfin/jellyfin:latest
           name: jellyfin
           imagePullPolicy: IfNotPresent
           env:
@@ -19,8 +19,17 @@ spec:
             - containerPort: 7359
               protocol: UDP
           volumeMounts:
-            - name: media
-              mountPath: /data/media
+            - name: audio-books
+              mountPath: /data/media/audio-books
+              readOnly: True
+            - name: movies
+              mountPath: /data/media/movies
+              readOnly: True
+            - name: music
+              mountPath: /data/media/music
+              readOnly: True
+            - name: shows
+              mountPath: /data/media/shows
               readOnly: True
             - name: config
               mountPath: /config
@@ -28,9 +37,18 @@ spec:
               mountPath: /cache
       restartPolicy: Always
       volumes:
-        - name: media
+        - name: audio-books
           persistentVolumeClaim:
-            claimName: jellyfin-media
+            claimName: audio-books
+        - name: movies
+          persistentVolumeClaim:
+            claimName: movies
+        - name: music
+          persistentVolumeClaim:
+            claimName: music
+        - name: shows
+          persistentVolumeClaim:
+            claimName: shows
         - name: config
           persistentVolumeClaim:
             claimName: jellyfin-config
