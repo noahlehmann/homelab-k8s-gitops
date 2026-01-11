@@ -6,7 +6,7 @@ spec:
   storageClassName: nfs-media
   volumeName: audio-books
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 2Ti
