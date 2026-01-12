@@ -23,3 +23,5 @@ spec:
       name: prometheus-chart-values
     - kind: ConfigMap
       name: alertmanager-chart-values
+    - kind: ConfigMap
+      name: grafana-chart-values
