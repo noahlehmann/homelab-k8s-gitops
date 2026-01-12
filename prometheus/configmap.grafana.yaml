@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: alertmanager-chart-values
+  name: grafana-chart-values
 data:
   values.yaml: |-
     grafana:
