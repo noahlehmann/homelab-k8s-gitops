@@ -4,8 +4,11 @@ namespace: prometheus
 resources:
   - namespace.yaml
   - repository.yaml
+  - pv.grafana.yaml
+  - secret.grafana.yaml
   - configmap.disabled.yaml
   - configmap.common.yaml
   - configmap.prometheus.yaml
   - configmap.alertmanager.yaml
+  - configmap.grafana.yaml
   - helmrelease.yaml

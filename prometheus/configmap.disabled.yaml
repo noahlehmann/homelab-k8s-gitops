@@ -4,8 +4,6 @@ metadata:
   name: disabled-chart-values
 data:
   values.yaml: |-
-    grafana:
-      enabled: false
     kubeApiServer:
       enabled: false
     kubeControllerManager:
