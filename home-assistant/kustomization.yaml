@@ -6,6 +6,7 @@ resources:
   - cr.multus.yaml
   - configmap.env.yaml
   - configmap.git.yaml
+  - secret.metrics.yaml
   - pv.yaml
   - pvc.yaml
   - service.yaml
