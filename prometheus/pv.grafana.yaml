@@ -4,7 +4,7 @@ metadata:
   name: grafana-data
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   capacity:
     storage: 10Gi
   csi:

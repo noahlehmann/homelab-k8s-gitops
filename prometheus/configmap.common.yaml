@@ -42,6 +42,8 @@ data:
           cpu: 100m
           memory: 100Mi
     prometheusOperator:
+      nameOverride: prometheus
+      fullnameOverride: prometheus
       enabled: true
       tls:
         enabled: false
