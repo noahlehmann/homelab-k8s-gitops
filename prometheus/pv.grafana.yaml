@@ -12,7 +12,7 @@ spec:
     volumeAttributes:
       server: 10.0.0.21
       share: /mnt/data/csi/named
-      subdir: music
+      subdir: grafana
     volumeHandle: 10.0.0.21#mnt/data/csi/named#grafana##
   mountOptions:
     - nfsvers=4.1
