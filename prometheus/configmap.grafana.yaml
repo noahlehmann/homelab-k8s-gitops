@@ -35,6 +35,6 @@ data:
             secretName: grafana-tls
       sidecar:
         dashboards:
-          enabled: true
+          enabled: false
         datasources:
           enabled: true
