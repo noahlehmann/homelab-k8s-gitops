@@ -4,6 +4,7 @@ namespace: wyoming-protocol
 resources:
   - namespace.yaml
   - piper
+  - whisper
 labels:
   - pairs:
       app.kubernetes.io/name: "wyoming-protocol"
