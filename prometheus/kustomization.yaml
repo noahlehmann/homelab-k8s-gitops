@@ -11,4 +11,5 @@ resources:
   - configmap.prometheus.yaml
   - configmap.alertmanager.yaml
   - configmap.grafana.yaml
+  - dashboards
   - helmrelease.yaml

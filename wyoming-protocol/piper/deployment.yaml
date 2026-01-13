@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wyoming-piper
+spec:
+  replicas: 1
+  selector: {}
+  template:
+    spec:
+      containers:
+        - name: piper
+          image: rhasspy/wyoming-piper:latest
+          imagePullPolicy: Always
+          args:
+            - --voice
+            - de_DE-thorsten-medium
+          ports:
+            - name: piper
+              containerPort: 10200
+          volumeMounts:
+            - name: piper-data
+              mountPath: /data
+      volumes:
+        - name: piper-data
+          persistentVolumeClaim:
+            claimName: wyoming-piper-data
