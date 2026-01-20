@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: speedtest
+  name: paperless-ngx
   namespace: flux-system
 spec:
   decryption:
@@ -14,7 +14,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./speedtest
+  path: ./wireguard
   prune: true
   wait: true
   dependsOn:
