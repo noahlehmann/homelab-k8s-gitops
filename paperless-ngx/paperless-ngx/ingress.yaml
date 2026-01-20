@@ -20,4 +20,4 @@ spec:
               service:
                 name: paperless-ngx
                 port:
-                  name: http
+                  name: paperless
