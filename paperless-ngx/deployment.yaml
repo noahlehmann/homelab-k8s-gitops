@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx
+spec:
+  replicas: 1
+  selector: {}
+  template:
+    spec:
+      volumes:
+        - name: paperless-data
+          persistentVolumeClaim:
+            claimName: paperless-ngx-data
+        - name: paperless-media
+          persistentVolumeClaim:
+            claimName: paperless-ngx-media
+        - name: paperless-consume
+          persistentVolumeClaim:
+            claimName: paperless-ngx-consume
+      containers:
+        - name: paperless
+          image: ghcr.io/paperless-ngx/paperless-ngx:2.20.5
+          ports:
+            - name: paperless
+              containerPort: 8000
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: "/data/data"
+              name: paperless-data
+            - mountPath: "/data/media"
+              name: paperless-media
+            - mountPath: "/data/consume"
+              name: paperless-consume
+          envFrom:
+            - configMapRef:
+                name: paperless-ngx-env
+            - secretRef:
+                name: paperless-ngx-admin
+          env:
+            - name: PAPERLESS_DBHOST
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: host
+            - name: PAPERLESS_DBPORT
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: port
+            - name: PAPERLESS_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: dbname
+            - name: PAPERLESS_DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: user
+            - name: PAPERLESS_DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: password
