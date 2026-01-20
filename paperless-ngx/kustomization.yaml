@@ -6,11 +6,7 @@ resources:
   - redis
   - ../cloudnative-pg/cluster
   - volumes
-  - configmap.env.yaml
-  - secret.admin.yaml
-  - deployment.yaml
-  - service.yaml
-  - ingress.yaml
+  - paperless-ngx
 labels:
   - pairs:
       app.kubernetes.io/name: paperless-ngx
