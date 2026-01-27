@@ -28,8 +28,6 @@ spec:
         - name: otbr
           image: openthread/border-router:latest
           securityContext:
-            runAsUser: 0
-            runAsGroup: 0
             privileged: true
             capabilities:
               add:
@@ -51,4 +49,4 @@ spec:
               protocol: UDP
           volumeMounts:
             - name: data
-              mountPath: /var/lib/thread
+              mountPath: /data
