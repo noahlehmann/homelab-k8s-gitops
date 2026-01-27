@@ -26,15 +26,21 @@ spec:
             claimName: otbr-data
       containers:
         - name: otbr
-          image: ghcr.io/openthread/otbr:latest
+          image: openthread/border-router:latest
           securityContext:
             privileged: true
             capabilities:
               add:
                 - NET_ADMIN
-          args:
-            - --radio-url=spinel+uart:///dev/ttyACM0?uart-baudrate=115200
-            - --backbone-interface=net1
+          env:
+            - name: OT_RCP_DEVICE
+              value: spinel+hdlc+uart:///dev/ttyACM0?uart-baudrate=1000000
+            - name: OT_INFRA_IF
+              value: wlan0
+            - name: OT_THREAD_IF
+              value: wpan0
+            - name: OT_LOG_LEVEL
+              value: 7
           ports:
             - containerPort: 8081
               name: otbr-rest
