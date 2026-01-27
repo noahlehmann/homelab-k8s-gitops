@@ -6,7 +6,7 @@ resources:
   - cr.multus.yaml
   - pv.yaml
   - pvc.yaml
-  #- statefulset.yaml
+  - statefulset.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: "otbr"
