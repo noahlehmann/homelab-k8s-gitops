@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: otbr
+spec:
+  serviceName: otbr
+  replicas: 1
+  selector: {}
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [{
+            "name": "otbr-static-net",
+            "mac": "02:10:00:fa:01:04",
+            "ips": [
+              "10.0.0.64/24",
+              "2a02:810d:bd90:bd00::64/64",
+              "fd00:10::64/64"
+            ]
+          }]
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: otbr-data
+      containers:
+        - name: otbr
+          image: ghcr.io/openthread/otbr:latest
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - NET_ADMIN
+          args:
+            - --radio-url=spinel+uart:///dev/ttyACM0?uart-baudrate=115200
+            - --backbone-interface=net1
+          ports:
+            - containerPort: 8081
+              name: otbr-rest
+            - containerPort: 5353
+              name: mdns
+              protocol: UDP
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/thread
