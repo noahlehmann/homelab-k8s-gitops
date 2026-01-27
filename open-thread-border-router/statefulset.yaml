@@ -34,13 +34,13 @@ spec:
                 - NET_ADMIN
           env:
             - name: OT_RCP_DEVICE
-              value: spinel+hdlc+uart:///dev/ttyACM0?uart-baudrate=1000000
+              value: "spinel+hdlc+uart:///dev/ttyACM0?uart-baudrate=1000000"
             - name: OT_INFRA_IF
-              value: wlan0
+              value: "eth1"
             - name: OT_THREAD_IF
-              value: wpan0
+              value: "eth1"
             - name: OT_LOG_LEVEL
-              value: 7
+              value: "7"
           ports:
             - containerPort: 8081
               name: otbr-rest
