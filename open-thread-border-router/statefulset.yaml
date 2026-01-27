@@ -37,10 +37,6 @@ spec:
               value: "spinel+hdlc+uart:///dev/ttyACM0?uart-baudrate=1000000"
             - name: OT_INFRA_IF
               value: "eth1"
-            - name: OT_THREAD_IF
-              value: "eth1"
-            - name: OT_LOG_LEVEL
-              value: "7"
           ports:
             - containerPort: 8081
               name: otbr-rest
