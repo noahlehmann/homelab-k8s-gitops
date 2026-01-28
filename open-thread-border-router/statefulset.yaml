@@ -31,10 +31,11 @@ spec:
             privileged: true
             capabilities:
               add:
+                - SYS_ADMIN
                 - NET_ADMIN
           env:
             - name: "DEVICE"
-              value: "/dev/ttyUSB1"
+              value: "/dev/null"
             - name: "BACKBONE_IF"
               value: "eth1"
             - name: "FLOW_CONTROL"
