@@ -26,23 +26,31 @@ spec:
             claimName: otbr-data
       containers:
         - name: otbr
-          image: openthread/border-router:latest
-          securityContext:
-            privileged: true
-            capabilities:
-              add:
-                - NET_ADMIN
+          image: ghcr.io/ownbee/hass-otbr-docker
           env:
-            - name: OT_RCP_DEVICE
-              value: "spinel+hdlc+uart:///dev/ttyACM0?uart-baudrate=1000000"
-            - name: OT_INFRA_IF
+            - name: "DEVICE"
+              value: "/dev/ttyUSB1"
+            - name: "BACKBONE_IF"
               value: "eth1"
+            - name: "FLOW_CONTROL"
+              value: "1"
+            - name: "FIREWALL"
+              value: "1"
+            - name: "NAT64"
+              value: "1"
+            - name: "BAUDRATE"
+              value: "460800"
+            - name: "OTBR_REST_PORT"
+              value: "8081"
+            - name: "OTBR_WEB_PORT"
+              value: "8080"
+            - name: "AUTOFLASH_FIRMWARE"
+              value: "0"
           ports:
             - containerPort: 8081
-              name: otbr-rest
-            - containerPort: 5353
-              name: mdns
-              protocol: UDP
+              name: rest
+            - containerPort: 8080
+              name: web
           volumeMounts:
             - name: data
-              mountPath: /data
+              mountPath: /var/lib/thread
