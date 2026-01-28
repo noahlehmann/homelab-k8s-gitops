@@ -29,9 +29,9 @@ spec:
           image: ghcr.io/ownbee/hass-otbr-docker
           securityContext:
             privileged: true
-            #capabilities:
-            #  add:
-            #    - NET_ADMIN
+            capabilities:
+              add:
+                - NET_ADMIN
           env:
             - name: "DEVICE"
               value: "/dev/ttyUSB1"
