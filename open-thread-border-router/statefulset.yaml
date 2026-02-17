@@ -59,4 +59,4 @@ spec:
               name: web
           volumeMounts:
             - name: data
-              mountPath: /var/lib/thread
+              mountPath: /data
